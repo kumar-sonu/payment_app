@@ -1,0 +1,21 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @user.name
+p
+  strong Email:
+  = @user.email
+p
+  strong Description:
+  = @user.description
+p
+  strong Status:
+  = @user.status
+p
+  strong Total Transaction Sum:
+  = @user.total_transaction_sum
+
+=> link_to 'Edit', edit_user_path(@user), class: 'btn btn-info'
+
+=< link_to 'Back', users_path, class: 'btn btn-info'
