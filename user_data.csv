@@ -1,0 +1,4 @@
+name,description,email,status,password,role
+Andrew,Admin User,andrew@example.com,active,123456,admin
+John,Merchant User (active),john@example.com,active,123456,merchant
+Phillip,Merchant User (inactive),phillip@example.com,inactive,123456,merchant
