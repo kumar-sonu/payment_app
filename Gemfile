@@ -27,6 +27,8 @@ gem 'jbuilder', '~> 2.7'
 
 gem 'devise'
 gem 'html2slim'
+gem 'jwt'
+gem 'simple_command'
 gem 'slim-rails'
 gem 'whenever'
 

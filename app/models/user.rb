@@ -13,4 +13,8 @@ class User < ApplicationRecord
   after_initialize do
     self.role ||= :merchant if new_record?
   end
+
+  before_save do
+    self.total_transaction_sum = transactions.charged.approved.sum(:amount) if merchant?
+  end
 end
