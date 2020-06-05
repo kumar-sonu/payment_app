@@ -15,6 +15,8 @@ class Transaction < ApplicationRecord
                       on: :create }
   validates :uuid, :status, presence: true
 
+  scope :older_than, ->(time) { where('created_at < ?', time) }
+
   def add_uuid
     self.uuid ||= SecureRandom.uuid
   end
