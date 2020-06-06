@@ -2,10 +2,10 @@ class Transaction < ApplicationRecord
   belongs_to :user
   has_many :associated_transactions, foreign_key: :transaction_id, class_name: 'Transaction'
 
-  scope :authorized, -> { where(type: 'Authorize') }
-  scope :charged, -> { where(type: 'Charge') }
-  scope :refunded, -> { where(type: 'Refund') }
-  scope :reversed, -> { where(type: 'Reversal') }
+  { authorized: 'Authorize', charged: 'Charge', refunded: 'Refund',
+    reversed: 'Reversal' }.each do |name, type|
+    scope name.to_sym, -> { where(type: type) }
+  end
 
   enum status: %i[approved reversed refunded error]
   before_validation :add_uuid, on: :create
