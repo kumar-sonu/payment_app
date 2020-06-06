@@ -40,3 +40,19 @@ It uses a CSV file `user_data.csv` you can edit it to create users of you choice
 
 * **Refunded Transaction**<br>
 <img src="readme_images/refund_transaction.png" height="400">
+
+## Running the test cases
+`docker-compose exec server bash -c "bundle exec rspec spec"`
+
+*If you are not using docker you can run*
+`bundle exec rspec spec`
+
+### Process to run the app without docker
+
+* Make sure you have ruby '2.6.6'
+you can install it by `rvm install ruby-2.6.6`
+* clone repo
+* `cd payment_app`
+* run `bundle`
+* create and migrate database `rails db:create && rails db:migrate`
+* to run the server `rails s`
