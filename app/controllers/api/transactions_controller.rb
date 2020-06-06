@@ -1,13 +1,14 @@
 module Api
   class TransactionsController < Api::ApplicationController
+    include ExceptionHandler
+
     def create
       @transaction = @current_api_user.transactions.new(transaction_params)
-      if @transaction.save
-        render json: @transaction, status: :created
-      else
-        render json: { errors: @transaction.errors.full_messages },
-               status: :unprocessable_entity
-      end
+      @transaction.save!
+
+      render json: @transaction, status: :created
+    rescue ActiveRecord::RecordInvalid => e
+      raise ActiveRecord::RecordInvalid, e.message
     end
 
     private

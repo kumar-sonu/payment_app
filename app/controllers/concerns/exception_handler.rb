@@ -10,12 +10,12 @@ module ExceptionHandler
 
   included do
     # Define custom handlers
-    rescue_from ActiveRecord::RecordInvalid, with: :four_twenty_two
+    rescue_from ActiveRecord::RecordInvalid, with: :unprocessable_entity
     rescue_from ExceptionHandler::AuthenticationError, with: :unauthorized_request
-    rescue_from ExceptionHandler::MissingToken, with: :four_twenty_two
-    rescue_from ExceptionHandler::InvalidToken, with: :four_twenty_two
-    rescue_from ExceptionHandler::ExpiredSignature, with: :four_ninety_eight
-    rescue_from ExceptionHandler::DecodeError, with: :four_zero_one
+    rescue_from ExceptionHandler::MissingToken, with: :unprocessable_entity
+    rescue_from ExceptionHandler::InvalidToken, with: :unprocessable_entity
+    rescue_from ExceptionHandler::ExpiredSignature, with: :expired_token
+    rescue_from ExceptionHandler::DecodeError, with: :unable_to_decode
 
     rescue_from ActiveRecord::RecordNotFound do |e|
       render json: { message: e.message }, status: :not_found
@@ -28,19 +28,19 @@ module ExceptionHandler
 
   private
 
-  # JSON response with message; Status code 422 - unprocessable entity
-  def four_twenty_two(e)
+  # JSON response with message; Status code 422 - Unprocessable entity
+  def unprocessable_entity(e)
     render json: { message: e.message }, status: :unprocessable_entity
   end
 
-  # JSON response with message; Status code 401 - Unauthorized
-  def four_ninety_eight(e)
-    render json: { message: e.message }, status: :invalid_token
+  # JSON response with message; Status code 498 - Unauthorized
+  def expired_token(e)
+    render json: { message: e.message }, status: 498
   end
 
   # JSON response with message; Status code 401 - Unauthorized
-  def four_zero_one(e)
-    render json: { message: e.message }, status: :invalid_token
+  def unable_to_decode(e)
+    render json: { message: e.message }, status: 401
   end
 
   # JSON response with message; Status code 401 - Unauthorized
