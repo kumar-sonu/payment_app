@@ -10,9 +10,7 @@ class Transaction < ApplicationRecord
   enum status: %i[approved reversed refunded error]
   before_validation :add_uuid, on: :create
 
-  validates :customer_email,
-            format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i,
-                      on: :create }
+  validates :customer_email, presence: true, email: true
   validates :uuid, :status, presence: true
 
   scope :older_than, ->(time) { where('created_at < ?', time) }
