@@ -26,7 +26,6 @@ gem 'jbuilder', '~> 2.7'
 # gem 'image_processing', '~> 1.2'
 
 gem 'devise'
-gem 'html2slim'
 gem 'jwt'
 gem 'simple_command'
 gem 'slim-rails'
@@ -43,7 +42,7 @@ end
 group :test do
   gem 'database_cleaner'
   gem 'factory_bot_rails'
-  gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
+  gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
   gem 'rspec-core'
   gem 'rspec-expectations'
   gem 'rspec-mocks'
