@@ -1,24 +1,42 @@
-# README
+# Payment App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Some useful docker commands
+* `docker-compose up --build`
+* `docker-compose exec server bash -c "bundle exec rails db:create"`
+* `docker-compose exec server bash -c "bundle exec rails db:migrate"`
 
-Things you may want to cover:
+Check out the complete list of commands in the [Docker documentation](https://docs.docker.com/engine/reference/commandline/docker/)
 
-* Ruby version
+## Creating users (admin/merchant)
+To create users you can run `docker-compose exec server bash -c "bundle exec rake db:create_users"`.
+It uses a CSV file `user_data.csv` you can edit it to create users of you choice.
 
-* System dependencies
+## Authorizing user and getting token
+<img src="readme_images/user_authentication_success.png" height="280">
 
-* Configuration
+### Some checks while user authentication
+1. If we can not find user with give params
+<img src="readme_images/user_auth_fail1.png" height="280">
 
-* Database creation
+2. If email or password is invalid
+<img src="readme_images/user_auth_fail2.png" height="280">
 
-* Database initialization
+3. If user is not an active merchant
+<img src="readme_images/user_auth_fail3.png" height="280">
 
-* How to run the test suite
+## Creating different type of transactions
 
-* Services (job queues, cache servers, search engines, etc.)
+* **Base Transaction**<br>
+<img src="readme_images/create_base_transaction.png" height="400">
 
-* Deployment instructions
+* **Authorized Transaction**<br>
+<img src="readme_images/authorize_transaction.png" height="400">
 
-* ...
+* **Charged Transaction**<br>
+<img src="readme_images/charge_transaction.png" height="400">
+
+* **Reversed Transaction**<br>
+<img src="readme_images/reversal_transaction.png" height="400">
+
+* **Refunded Transaction**<br>
+<img src="readme_images/refund_transaction.png" height="400">
