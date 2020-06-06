@@ -43,6 +43,7 @@ group :test do
   gem 'database_cleaner'
   gem 'factory_bot_rails'
   gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
+  gem 'rails-controller-testing'
   gem 'rspec-core'
   gem 'rspec-expectations'
   gem 'rspec-mocks'
